@@ -5,7 +5,7 @@ import {
   loginUser,
   registerUser,
   resetPassword,
-} from "../../controllers/auth";
+} from "../../controllers/authController";
 import { loginSchema, registerSchema } from "../../validation/user";
 const authRouter = Router();
 

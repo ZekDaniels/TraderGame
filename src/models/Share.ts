@@ -4,9 +4,8 @@ import sequelizeConnection from "../db/connection";
 
 class Share extends BaseModel {
     public name!: string;
-    public price!: string;
-    public symbol!: string;
     public lastPrice!: number;
+    public symbol!: string;
     public status!: boolean;
 }
 

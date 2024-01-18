@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireUser, validateRequest } from "../../middleware";
-import { getUserData, updateUser } from "../../controllers/user";
+import { getUserData, updateUser } from "../../controllers/userController";
 import { updateSchema } from "../../validation/user";
 
 const userRouter = Router();
