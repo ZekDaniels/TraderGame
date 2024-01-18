@@ -1,16 +1,14 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
 import sequelizeConnection from "../db/connection";
+import User from "./User";
 
-class Share extends BaseModel {
+class Portfolio extends BaseModel {
     public name!: string;
-    public price!: string;
-    public symbol!: string;
-    public lastPrice!: number;
     public status!: boolean;
 }
 
-Share.init(
+Portfolio.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -19,23 +17,9 @@ Share.init(
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
+            allowNull: false
         },
-        lastPrice: {
-            type: DataTypes.DECIMAL(10, 2),
-            allowNull: false,
-        },
-        symbol: {
-            allowNull: false,
-            type: DataTypes.STRING(3),
-            unique: true,
-            validate: {
-                isUppercase: true,
-                len: [3, 3]
-            }
-        },
-        
+
         status: {
             allowNull: false,
             defaultValue: true,
@@ -44,11 +28,14 @@ Share.init(
     },
     {
         sequelize: sequelizeConnection,
-        tableName: "shares",
+        tableName: "portfolios",
         createdAt: "created_at",
         updatedAt: "last_updated",
     }
 );
 
 
-export default Share;
+Portfolio.belongsTo(User);
+User.hasOne(Portfolio);
+
+export default Portfolio;

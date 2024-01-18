@@ -3,6 +3,12 @@ export const ROLE = {
   USER: 2,
 };
 
+export const LogType = {
+  BUY: 1,
+  SELL: 2,
+};
+
+
 const SIGNED_URL_EXPIRY = 60 * 60; // in seconds
 const DEFAULT_LIMIT_PER_PAGE = 50;
 export { SIGNED_URL_EXPIRY, DEFAULT_LIMIT_PER_PAGE };

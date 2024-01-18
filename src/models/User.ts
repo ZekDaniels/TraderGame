@@ -28,7 +28,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: { msg: "Lütfen 3 ila 30 karakter arası isim giriniz" , args: [3,30]}
+                len: [3,30]
             }
         },
         email: {
