@@ -6,26 +6,20 @@ export const createShareService = async (payload: any) => {
 };
 
 export const getByIdShareService = async (id: number) => {
-    const share = await Share.findByPk(id);
-    if (!share) {
-        throw new Error("Share not found");
-    }
-    return share;
+    return await Share.findByPk(id);
 };
 
-export const getAllShareService = async (id: number) => {
-    const share = await Share.findByPk(id);
-    if (!share) {
-        throw new Error("Share not found");
-    }
-    return share;
+export const getSharesService = async () => {
+    return await Share.findAll();
 };
 
 export const updateShareService = async (share: any, shareId: number) => {
+    const shareExists = await getByIdShareService(shareId);
+
     if (!share && !shareId) {
         throw new Error("Please provide share data and/or share id to update");
     }
-    if (shareId && isNaN(shareId)) {
+    if (shareId && isNaN(shareId) || !shareExists) {
         throw new Error("Invalid share id");
     }
     if (share.id || shareId) {
@@ -37,11 +31,13 @@ export const updateShareService = async (share: any, shareId: number) => {
     }
 };
 
-export const deleteShareService = async (share: any, shareId: number) => {
+export const deleteShareService = async (shareId: number) => {
+    const shareExists = await getByIdShareService(shareId);
+
     if (!shareId) {
         throw new Error("Please share id to delete");
     }
-    if (shareId && isNaN(shareId)) {
+    if (shareId && isNaN(shareId) || !shareExists) {
         throw new Error("Invalid share id");
     }
 

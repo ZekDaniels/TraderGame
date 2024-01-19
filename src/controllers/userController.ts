@@ -3,7 +3,9 @@ import { NextFunction, Response } from "express";
 import { omit } from "lodash";
 import { customRequest } from "../types/customDefinition";
 import { ApiError } from "../util/ApiError";
+
 const omitData = ["password"];
+
 export const updateUser = async (
   req: customRequest,
   res: Response,
