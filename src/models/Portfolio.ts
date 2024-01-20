@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
-import sequelizeConnection from "../db/connection";
+import sequelize from "../db/connection";
 import User from "./User";
 import { createMainPortfolio } from "../events/portfolioEvents";
 console.log(User);
@@ -32,9 +32,13 @@ Portfolio.init(
             defaultValue: false,
             type: DataTypes.BOOLEAN,
         },
+        UserId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
     {
-        sequelize: sequelizeConnection,
+        sequelize: sequelize,
         tableName: "portfolios",
         createdAt: "created_at",
         updatedAt: "last_updated",

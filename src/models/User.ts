@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
-import sequelizeConnection from "../db/connection";
+import sequelize from "../db/connection";
 import { compareSync } from "../util/encrypt";
 import { ROLE } from "../config/consts";
 import { encryptPasswordIfChanged } from "../events/userEvents";
@@ -59,7 +59,7 @@ User.init(
         },
     },
     {
-        sequelize: sequelizeConnection,
+        sequelize: sequelize,
         tableName: "users",
         createdAt: "created_at",
         updatedAt: "last_updated",

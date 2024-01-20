@@ -4,7 +4,7 @@ import logger from "../util/logger";
 
 const isDev = process.env.NODE_ENV === "development";
 
-const sequelizeConnection = new Sequelize(
+const sequelize = new Sequelize(
   dbConfig.database,
   dbConfig.username,
   dbConfig.password,
@@ -13,12 +13,18 @@ const sequelizeConnection = new Sequelize(
     port: dbConfig.port,
     dialect: dbConfig.dialect,
     logging: msg => logger.debug(msg),
+    pool: {
+      max: 5,
+      min: 1,
+      idle: 10000,
+      evict: 10000,
+    }
   }
 );
 
 const dbSync = async () => {
   try {
-    await sequelizeConnection.sync({ alter: isDev });
+    await sequelize.sync({ alter: isDev });
     return { success: true };
   } catch (error) {
     throw error;
@@ -33,5 +39,5 @@ dbSync()
   });
 
 export { dbSync };
- 
-export default sequelizeConnection;
+
+export default sequelize;

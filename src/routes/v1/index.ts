@@ -4,6 +4,7 @@ import authRouter from "./authRoute";
 import docsRouter from "./docsRoute";
 import userRouter from "./userRoutes";
 import shareRouter from "./shareRoutes";
+import portfolioRouter from "./portfolioRoutes";
 
 const appRouter = Router();
 // all routes
@@ -23,6 +24,10 @@ const appRoutes = [
   {
     path: "/share",
     router: shareRouter,
+  },
+  {
+    path: "/portfolio",
+    router: portfolioRouter,
   },
 ];
 

@@ -1,9 +1,14 @@
+import sequelize from "../db/connection";
 import User from "../models/User";
 import { Op } from "sequelize";
 
 export const createUser = async (payload: any) => {
-  const user = await User.create(payload);
-  return user;
+  const user = await sequelize.transaction(async transaction => {
+    const userData = await User.create(payload, { transaction: transaction });
+    return userData;
+  });
+
+return user;
 };
 
 export const getUserById = async (id: number) => {

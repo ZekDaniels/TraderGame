@@ -34,7 +34,7 @@ export const registerUser = async (
     return res.status(200).json({
       data: userData,
       error: false,
-      accessToken,
+      access_token: accessToken,
       msg: "User registered successfully",
     });
   } catch (err) {

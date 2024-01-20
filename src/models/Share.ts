@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
-import sequelizeConnection from "../db/connection";
+import sequelize from "../db/connection";
 
 class Share extends BaseModel {
     public name!: string;
@@ -43,7 +43,7 @@ Share.init(
         },
     },
     {
-        sequelize: sequelizeConnection,
+        sequelize: sequelize,
         tableName: "shares",
         createdAt: "created_at",
         updatedAt: "last_updated",

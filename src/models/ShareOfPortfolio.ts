@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
-import sequelizeConnection from "../db/connection";
+import sequelize from "../db/connection";
 import Share from "./Share";
 import Portfolio from "./Portfolio";
 
@@ -32,7 +32,7 @@ Share_Portfolio.init(
 
     },
     {
-        sequelize: sequelizeConnection,
+        sequelize: sequelize,
         tableName: "shares_of_portfolios",
         createdAt: "created_at",
         updatedAt: "last_updated",

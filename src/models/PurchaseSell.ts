@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
-import sequelizeConnection from "../db/connection";
+import sequelize from "../db/connection";
 import Share from "./Share";
 import Portfolio from "./Portfolio";
 
@@ -32,7 +32,7 @@ PurchaseSellLog.init(
         },
     },
     {
-        sequelize: sequelizeConnection,
+        sequelize: sequelize,
         tableName: "purchase_sell_logs",
         createdAt: "created_at",
         updatedAt: "last_updated",

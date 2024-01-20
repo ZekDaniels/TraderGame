@@ -5,5 +5,7 @@ export async function createMainPortfolio(user: any, options: any) {
         name: "Main Portfolio",
         UserId: user.id,
         isMain: true
+    }, {
+        transaction: options.transaction
     });
 }
