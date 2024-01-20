@@ -1,9 +1,7 @@
-import { encryptSync } from "../util/encrypt";
 import User from "../models/User";
 import { Op } from "sequelize";
 
 export const createUser = async (payload: any) => {
-  payload.password = encryptSync(payload.password);
   const user = await User.create(payload);
   return user;
 };
@@ -90,12 +88,9 @@ export const updateUserById = (user: any, userId: number) => {
   if (user.id || userId) {
     const id = user.id || userId;
 
-    if (user.password) {
-      user.password = encryptSync(user.password);
-    }
-
     return User.update(user, {
       where: { id: id },
+      individualHooks: true
     });
   }
 };

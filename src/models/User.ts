@@ -3,6 +3,7 @@ import BaseModel from "./BaseModel";
 import sequelizeConnection from "../db/connection";
 import { compareSync } from "../util/encrypt";
 import { ROLE } from "../config/consts";
+import { encryptPasswordIfChanged } from "../events/userEvents";
 
 const roles = Object.values(ROLE);
 
@@ -28,7 +29,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [3,30]
+                len: [3, 30]
             }
         },
         email: {
@@ -70,4 +71,6 @@ User.validPassword = (password: string, hash: string) => {
     return compareSync(password, hash);
 };
 
+User.beforeCreate(encryptPasswordIfChanged);
+User.beforeUpdate(encryptPasswordIfChanged);
 export default User;

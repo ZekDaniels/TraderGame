@@ -116,14 +116,14 @@ export const resetPassword = async (
       throw new ApiError(400, "Email id is incorrect");
     }
     user = user?.toJSON();
-    const isValid = verifyOTP(user.email, otp);
+    // const isValid = verifyOTP(user.email, otp);
 
-    if (!isValid) {
-      return res.status(400).send({
-        error: true,
-        errorMsg: "OTP is Incorrect",
-      });
-    }
+    // if (!isValid) {
+    //   return res.status(400).send({
+    //     error: true,
+    //     errorMsg: "OTP is Incorrect",
+    //   });
+    // }
 
     const updated = await updateUserById({ password }, user.id);
 
