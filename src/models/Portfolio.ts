@@ -7,6 +7,7 @@ console.log(User);
 class Portfolio extends BaseModel {
     public name!: string;
     public status!: boolean;
+    public isMain!: boolean;
 }
 
 Portfolio.init(
@@ -24,6 +25,11 @@ Portfolio.init(
         status: {
             allowNull: false,
             defaultValue: true,
+            type: DataTypes.BOOLEAN,
+        },
+        isMain: {
+            allowNull: false,
+            defaultValue: false,
             type: DataTypes.BOOLEAN,
         },
     },
