@@ -39,10 +39,10 @@ PurchaseSellLog.init(
     }
 );
 
-PurchaseSellLog.belongsTo(Share);
+PurchaseSellLog.belongsTo(Share, { onDelete: "CASCADE", onUpdate: "CASCADE" });
 Share.hasMany(PurchaseSellLog);
 
-PurchaseSellLog.belongsTo(Portfolio);
+PurchaseSellLog.belongsTo(Portfolio, { onDelete: "CASCADE", onUpdate: "CASCADE" });
 Portfolio.hasMany(PurchaseSellLog);
 
 export default PurchaseSellLog;

@@ -6,7 +6,6 @@ import userRouter from "./userRoutes";
 import shareRouter from "./shareRoutes";
 
 const appRouter = Router();
-
 // all routes
 const appRoutes = [
   {

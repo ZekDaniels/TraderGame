@@ -6,7 +6,6 @@ import { ROLE } from "../config/consts";
 import { encryptPasswordIfChanged } from "../events/userEvents";
 
 const roles = Object.values(ROLE);
-
 class User extends BaseModel {
     public name!: string;
     public email!: string;
@@ -64,6 +63,12 @@ User.init(
         tableName: "users",
         createdAt: "created_at",
         updatedAt: "last_updated",
+        indexes: [
+            {
+                unique: true,
+                fields: ["email"],
+            }
+        ]
     }
 );
 
@@ -73,4 +78,5 @@ User.validPassword = (password: string, hash: string) => {
 
 User.beforeCreate(encryptPasswordIfChanged);
 User.beforeUpdate(encryptPasswordIfChanged);
+
 export default User;

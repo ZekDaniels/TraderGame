@@ -34,11 +34,12 @@ Share.init(
                 len: [3, 3]
             }
         },
-        
+
         status: {
             allowNull: false,
             defaultValue: true,
             type: DataTypes.BOOLEAN,
+
         },
     },
     {
@@ -46,6 +47,12 @@ Share.init(
         tableName: "shares",
         createdAt: "created_at",
         updatedAt: "last_updated",
+        indexes: [
+            {
+                unique: true,
+                fields: ["symbol"], // Index on the 'email' column
+            }
+        ]
     }
 );
 

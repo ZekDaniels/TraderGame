@@ -2,7 +2,8 @@ import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
 import sequelizeConnection from "../db/connection";
 import User from "./User";
-
+import { createMainPortfolio } from "../events/portfolioEvents";
+console.log(User);
 class Portfolio extends BaseModel {
     public name!: string;
     public status!: boolean;
@@ -35,7 +36,7 @@ Portfolio.init(
 );
 
 
-Portfolio.belongsTo(User);
+Portfolio.belongsTo(User, { onDelete: "CASCADE", onUpdate: "CASCADE" });
 User.hasOne(Portfolio);
-
+User.afterCreate(createMainPortfolio);
 export default Portfolio;

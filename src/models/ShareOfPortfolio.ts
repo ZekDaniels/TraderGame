@@ -4,13 +4,13 @@ import sequelizeConnection from "../db/connection";
 import Share from "./Share";
 import Portfolio from "./Portfolio";
 
-class ShareOfPortfolio extends BaseModel {
+class Share_Portfolio extends BaseModel {
     public name!: string;
     public quantity!: number;
     public price!: number;
 }
 
-ShareOfPortfolio.init(
+Share_Portfolio.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -40,11 +40,7 @@ ShareOfPortfolio.init(
 );
 
 
-Portfolio.belongsToMany(Share, {
-    through: ShareOfPortfolio,
-});
-Share.belongsToMany(Portfolio, {
-    through: ShareOfPortfolio,
-});
+Portfolio.belongsToMany(Share, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
+Share.belongsToMany(Portfolio, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
 
-export default ShareOfPortfolio;
+export default Share_Portfolio;
