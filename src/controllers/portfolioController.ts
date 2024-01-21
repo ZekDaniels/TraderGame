@@ -1,6 +1,6 @@
 import { ApiError } from "../util/ApiError";
 import {
-    createPortfolioService, deletePortfolioService, getByIdPortfolioService, getPortfoliosService, updatePortfolioService,
+    createPortfolioService, deletePortfolioService, getPotfolioByIdService, getPortfoliosService, updatePortfolioService,
 } from "../services/portfolioService";
 import { NextFunction, Request, Response } from "express";
 import { customRequest } from "customDefinition";
@@ -75,7 +75,7 @@ export const getPortfolio = async (
     next: NextFunction
 ) => {
     try {
-        const portfolio = await getByIdPortfolioService(parseInt(req.params.id));
+        const portfolio = await getPotfolioByIdService(parseInt(req.params.id));
 
         if (!portfolio) {
             throw new ApiError(400, "Portfolio not found");

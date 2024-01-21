@@ -1,6 +1,6 @@
 import { ApiError } from "../util/ApiError";
 import {
-    createShareService, deleteShareService, getByIdShareService, getSharesService, updateShareService,
+    createShareService, deleteShareService, getShareByIdService, getSharesService, updateShareService,
 } from "../services/shareService";
 import { NextFunction, Request, Response } from "express";
 
@@ -71,7 +71,7 @@ export const getShare = async (
     next: NextFunction
 ) => {
     try {
-        const share = await getByIdShareService(parseInt(req.params.id));
+        const share = await getShareByIdService(parseInt(req.params.id));
 
         if (!share) {
             throw new ApiError(400, "Share not found");

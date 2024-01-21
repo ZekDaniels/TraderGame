@@ -5,7 +5,7 @@ export const createShareService = async (payload: any) => {
     return share;
 };
 
-export const getByIdShareService = async (id: number) => {
+export const getShareByIdService = async (id: number) => {
     return await Share.findByPk(id);
 };
 
@@ -14,7 +14,7 @@ export const getSharesService = async () => {
 };
 
 export const updateShareService = async (share: any, shareId: number) => {
-    const shareExists = await getByIdShareService(shareId);
+    const shareExists = await getShareByIdService(shareId);
 
     if (!share && !shareId) {
         throw new Error("Please provide share data and/or share id to update");
@@ -32,7 +32,7 @@ export const updateShareService = async (share: any, shareId: number) => {
 };
 
 export const deleteShareService = async (shareId: number) => {
-    const shareExists = await getByIdShareService(shareId);
+    const shareExists = await getShareByIdService(shareId);
 
     if (!shareId) {
         throw new Error("Please share id to delete");
