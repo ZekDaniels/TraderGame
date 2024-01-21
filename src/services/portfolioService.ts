@@ -1,7 +1,6 @@
 import { Op } from "sequelize";
 import sequelize from "../db/connection";
 import Portfolio from "../models/Portfolio";
-import { log } from "console";
 
 export const createPortfolioService = async (payload: any) => {
     const portfolio = await Portfolio.create(payload);

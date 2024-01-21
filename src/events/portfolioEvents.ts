@@ -13,9 +13,7 @@ export async function createMainPortfolio(user: any, options: any) {
 }
 
 export async function updateMainPortfolio(portfolio: any, options: any) {
-    log("##########################3");
-    log("##########################3");
-    log("##########################3");
+    
     const where: any = {
         [Op.not]: [],
         [Op.and]: [],
