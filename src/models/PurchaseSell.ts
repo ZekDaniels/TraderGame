@@ -4,14 +4,14 @@ import sequelize from "../db/connection";
 import Share from "./Share";
 import Portfolio from "./Portfolio";
 
-class PurchaseSellLog extends BaseModel {
+class PurchaseSell extends BaseModel {
     public name!: string;
     public quantity!: number;
     public price!: number;
-    public logType!: number;
+    public Type!: number;
 }
 
-PurchaseSellLog.init(
+PurchaseSell.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -26,23 +26,23 @@ PurchaseSellLog.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        logType: {
+        Type: {
             type: DataTypes.INTEGER,
             allowNull: false
         },
     },
     {
         sequelize: sequelize,
-        tableName: "purchase_sell_logs",
+        tableName: "purchase_sell",
         createdAt: "created_at",
         updatedAt: "last_updated",
     }
 );
 
-PurchaseSellLog.belongsTo(Share, { onDelete: "CASCADE", onUpdate: "CASCADE" });
-Share.hasMany(PurchaseSellLog);
+PurchaseSell.belongsTo(Share, { onDelete: "CASCADE", onUpdate: "CASCADE" });
+Share.hasMany(PurchaseSell);
 
-PurchaseSellLog.belongsTo(Portfolio, { onDelete: "CASCADE", onUpdate: "CASCADE" });
-Portfolio.hasMany(PurchaseSellLog);
+PurchaseSell.belongsTo(Portfolio, { onDelete: "CASCADE", onUpdate: "CASCADE" });
+Portfolio.hasMany(PurchaseSell);
 
-export default PurchaseSellLog;
+export default PurchaseSell;
