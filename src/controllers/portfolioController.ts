@@ -3,16 +3,18 @@ import {
     createPortfolioService, deletePortfolioService, getByIdPortfolioService, getPortfoliosService, updatePortfolioService,
 } from "../services/portfolioService";
 import { NextFunction, Request, Response } from "express";
+import { customRequest } from "customDefinition";
 
 
 export const createPortfolio = async (
-    req: Request,
+    req: customRequest,
     res: Response,
     next: NextFunction
 ) => {
     try {
         let portfolio = req.body;
 
+        portfolio["UserId"] = req.user.id;
         portfolio = await createPortfolioService(portfolio);
 
         return res.status(200).json({
@@ -26,14 +28,15 @@ export const createPortfolio = async (
 };
 
 export const updatePortfolio = async (
-    req: Request,
+    req: customRequest,
     res: Response,
     next: NextFunction
 ) => {
     try {
         let portfolio = req.body;
 
-        portfolio = await updatePortfolioService(portfolio, parseInt(req.params.id));
+        portfolio["UserId"] = req.user.id;
+        portfolio = await updatePortfolioService(portfolio, parseInt(req.params.id), parseInt(portfolio["UserId"]));
 
         return res.status(200).json({
             data: portfolio,
@@ -47,12 +50,13 @@ export const updatePortfolio = async (
 
 
 export const deletePortfolio = async (
-    req: Request,
+    req: customRequest,
     res: Response,
     next: NextFunction
 ) => {
     try {
-        const result = await deletePortfolioService(parseInt(req.params.id));
+        const result = await deletePortfolioService(parseInt(req.params.id), parseInt(req.user.id));
+
 
         return res.status(200).json({
             data: result,

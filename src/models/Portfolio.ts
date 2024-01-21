@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import BaseModel from "./BaseModel";
 import sequelize from "../db/connection";
 import User from "./User";
-import { createMainPortfolio } from "../events/portfolioEvents";
+import { createMainPortfolio, updateMainPortfolio } from "../events/portfolioEvents";
 console.log(User);
 class Portfolio extends BaseModel {
     public name!: string;
@@ -42,6 +42,12 @@ Portfolio.init(
         tableName: "portfolios",
         createdAt: "created_at",
         updatedAt: "last_updated",
+        indexes: [
+            {
+                unique: false,
+                fields: ["UserId"],
+            }
+        ]
     }
 );
 
@@ -49,4 +55,5 @@ Portfolio.init(
 Portfolio.belongsTo(User, { onDelete: "CASCADE", onUpdate: "CASCADE" });
 User.hasOne(Portfolio);
 User.afterCreate(createMainPortfolio);
+Portfolio.afterUpdate(updateMainPortfolio);
 export default Portfolio;
