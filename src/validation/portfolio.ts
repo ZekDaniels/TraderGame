@@ -8,5 +8,5 @@ export const createSchema = Joi.object({
 export const updateSchema = Joi.object({
     name: Joi.string(),
     status: Joi.boolean(),
-    isMain: Joi.boolean()
+    isMain: Joi.boolean().equal(true)
 });
