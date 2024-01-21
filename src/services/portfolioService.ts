@@ -15,7 +15,7 @@ export const getPortfolioService = async (where: any) => {
     return portfolio;
 };
 
-export const getPotfolioByIdService = async (id: number) => {
+export const getPortfolioByIdService = async (id: number) => {
     return await Portfolio.findByPk(id);
 };
 
