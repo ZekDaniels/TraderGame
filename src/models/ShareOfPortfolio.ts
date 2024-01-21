@@ -5,7 +5,6 @@ import Share from "./Share";
 import Portfolio from "./Portfolio";
 
 class Share_Portfolio extends BaseModel {
-    public name!: string;
     public quantity!: number;
     public price!: number;
 }
@@ -16,10 +15,6 @@ Share_Portfolio.init(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false
         },
         quantity: {
             type: DataTypes.INTEGER,
