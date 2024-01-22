@@ -1,7 +1,7 @@
 import { LogType } from "../config/consts";
 import Share_Portfolio from "../models/ShareOfPortfolio";
 
-export async function createSharePortfolio(purchase_sell: any, options: any) {
+export async function manageSharePortfolio(purchase_sell: any, options: any) {
 
     const base_data = { PortfolioId: purchase_sell.PortfolioId, ShareId: purchase_sell.ShareId };
     let boughtShare = await Share_Portfolio.findOne({ where: base_data, transaction: options.transaction });
