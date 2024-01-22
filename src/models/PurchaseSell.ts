@@ -3,12 +3,15 @@ import BaseModel from "./BaseModel";
 import sequelize from "../db/connection";
 import Share from "./Share";
 import Portfolio from "./Portfolio";
+import { LogType } from "../config/consts";
+
+const logTypes = Object.values(LogType);
 
 class PurchaseSell extends BaseModel {
     public name!: string;
     public quantity!: number;
     public price!: number;
-    public Type!: number;
+    public type!: number;
 }
 
 PurchaseSell.init(
@@ -26,10 +29,21 @@ PurchaseSell.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        Type: {
+        type: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            validate: {
+                isIn: [logTypes]
+            }
         },
+        ShareId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        PortfolioId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
     },
     {
         sequelize: sequelize,

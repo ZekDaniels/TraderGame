@@ -24,6 +24,14 @@ Share_Portfolio.init(
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
+        ShareId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        PortfolioId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        }
 
     },
     {
