@@ -5,7 +5,6 @@ import userRouter from "./userRoutes";
 import shareRouter from "./shareRoutes";
 import portfolioRouter from "./portfolioRoutes";
 import purchaseSellRouter from "./purchaseSellRoutes";
-import Share_Portfolio from "../../models/ShareOfPortfolio";
 import sharePortfolioRouter from "./sharePortfolioRoutes";
 
 const appRouter = Router();
