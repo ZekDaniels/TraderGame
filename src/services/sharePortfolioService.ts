@@ -1,9 +1,11 @@
-import { Op } from "sequelize";
 import Share_Portfolio from "../models/ShareOfPortfolio";
 import Portfolio from "../models/Portfolio";
 import { log } from "console";
 
 
+export const getSharePortfolioByIdService = async (id: number) => {
+    return await Share_Portfolio.findByPk(id);
+};
 export const getSharePortfolioService = async (where: any) => {
     return (await Share_Portfolio.findOne(where));
 };
