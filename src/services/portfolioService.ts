@@ -8,7 +8,6 @@ export const createPortfolioService = async (payload: any) => {
 };
 
 export const getPortfolioService = async (where: any) => {
-
     return await Portfolio.findOne( where );
 };
 
