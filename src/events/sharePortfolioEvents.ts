@@ -7,7 +7,9 @@ export async function manageSharePortfolio(purchase_sell: any, options: any) {
     let boughtShare = await Share_Portfolio.findOne({ where: base_data, transaction: options.transaction });
 
     if (purchase_sell.type == LogType.PURCHASE) {
+    
         if (!boughtShare?.id) {
+
             boughtShare = await Share_Portfolio.create({
                 ...base_data,
                 quantity: purchase_sell.quantity,
@@ -15,13 +17,24 @@ export async function manageSharePortfolio(purchase_sell: any, options: any) {
             }, {
                 transaction: options.transaction
             });
+          
         }
-        else boughtShare.quantity += purchase_sell.quantity;
+        else {
+            boughtShare.quantity += purchase_sell.quantity;
+            boughtShare.price = purchase_sell.lastPrice;
+            await boughtShare.save({ transaction: options.transaction });
+        }
     }
     else {
         boughtShare.quantity -= purchase_sell.quantity;
-    }
-    boughtShare.price = purchase_sell.lastPrice;
 
-    await boughtShare.save({ transaction: options.transaction });
+        // If run out of stock
+        if (boughtShare.quantity == 0) await boughtShare.destroy();
+        else {
+            boughtShare.price = purchase_sell.lastPrice;
+            await boughtShare.save({ transaction: options.transaction });
+        }
+
+    }
+
 }

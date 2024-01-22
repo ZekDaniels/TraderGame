@@ -1,13 +1,20 @@
+import { log } from "console";
 import { LogType } from "../config/consts";
 import PurchaseSell from "../models/PurchaseSell";
-import { getPortfolioByIdService } from "./portfolioService";
+import { getPortfolioService } from "./portfolioService";
 import { getShareService } from "./shareService";
+import sequelize from "../db/connection";
 
 export const purchaseService = async (payload: any) => {
-    const { symbol, portfolioId, quantity } = payload;
-
-    const share = await getShareService({ symbol: symbol });
-    const portfolio = await getPortfolioByIdService(portfolioId);
+    const { symbol, portfolioId, quantity, userId } = payload;
+    log(symbol);
+    log(symbol);
+    log(symbol);
+    const share = await getShareService({ where: { symbol: symbol } });
+    log("symbol");
+    log("symbol");
+    log("symbol");
+    const portfolio = await getPortfolioService({ where: { id: portfolioId, UserId: userId } });
 
     if (portfolioId && isNaN(portfolioId) || !portfolio) {
         throw new Error("Invalid portfolio id");
@@ -18,18 +25,30 @@ export const purchaseService = async (payload: any) => {
     if (portfolio && share) {
 
         const totalCost = quantity * share.lastPrice;
-        const base_data = { PortfolioId: portfolioId, ShareId: share.id };
-        const purchase_sell = await PurchaseSell.create({ ...base_data, quantity: quantity, price: share.lastPrice, type: LogType.PURCHASE });
+        const baseData = { PortfolioId: portfolioId, ShareId: share.id };
 
-        return { ...purchase_sell, totalCost: totalCost };
+        const purchaseSell = await sequelize.transaction(async transaction => {
+            const purchaseSell = await PurchaseSell.create({
+                ...baseData,
+                quantity: quantity,
+                price: share.lastPrice,
+                type: LogType.PURCHASE
+            },
+                { transaction: transaction }
+            );
+            return purchaseSell;
+        });
+
+
+        return { ...purchaseSell, totalCost: totalCost };
     }
 };
 
 export const sellService = async (payload: any) => {
-    const { symbol, portfolioId, quantity } = payload;
+    const { symbol, portfolioId, quantity, userId } = payload;
 
-    const share = await getShareService({ symbol: symbol });
-    const portfolio = await getPortfolioByIdService(portfolioId);
+    const share = await getShareService({ where: { symbol: symbol } });
+    const portfolio = await getPortfolioService({ where: { id: portfolioId, UserId: userId } });
 
     if (portfolioId && isNaN(portfolioId) || !portfolio) {
         throw new Error("Invalid portfolio id");
@@ -39,9 +58,19 @@ export const sellService = async (payload: any) => {
     }
     if (portfolio && share) {
         const totalCost = quantity * share.lastPrice;
-        const base_data = { PortfolioId: portfolioId, ShareId: share.id };
-        const purchase_sell = await PurchaseSell.create({ ...base_data, quantity: quantity, price: share.lastPrice, type: LogType.SELL });
+        const baseData = { PortfolioId: portfolioId, ShareId: share.id };
+        const purchaseSell = await sequelize.transaction(async transaction => {
+            const purchaseSell = await PurchaseSell.create({
+                ...baseData,
+                quantity: quantity,
+                price: share.lastPrice,
+                type: LogType.SELL
+            },
+                { transaction: transaction }
+            );
+            return purchaseSell;
+        });
 
-        return { ...purchase_sell, totalCost: totalCost };
+        return { ...purchaseSell, totalCost: totalCost };
     }
 };

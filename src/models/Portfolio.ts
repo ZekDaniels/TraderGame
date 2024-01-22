@@ -3,7 +3,7 @@ import BaseModel from "./BaseModel";
 import sequelize from "../db/connection";
 import User from "./User";
 import { createMainPortfolio, updateMainPortfolio } from "../events/portfolioEvents";
-console.log(User);
+
 class Portfolio extends BaseModel {
     public name!: string;
     public status!: boolean;

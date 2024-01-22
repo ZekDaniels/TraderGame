@@ -6,7 +6,7 @@ export const createShareService = async (payload: any) => {
 };
 
 export const getShareService = async (where: any) => {
-    return await Share.findOne({ where });
+    return await Share.findOne( where );
 };
 
 export const getShareByIdService = async (id: number) => {

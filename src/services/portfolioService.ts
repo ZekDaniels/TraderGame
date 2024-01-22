@@ -9,7 +9,7 @@ export const createPortfolioService = async (payload: any) => {
 
 export const getPortfolioService = async (where: any) => {
 
-    return await Portfolio.findOne({ where });
+    return await Portfolio.findOne( where );
 };
 
 export const getPortfolioByIdService = async (id: number) => {
