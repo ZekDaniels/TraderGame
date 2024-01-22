@@ -12,10 +12,10 @@ export const createPortfolio = async (
     next: NextFunction
 ) => {
     try {
-        let portfolio = req.body;
+        const payload = req.body;
 
-        portfolio["UserId"] = req.user.id;
-        portfolio = await createPortfolioService(portfolio);
+        payload["UserId"] = req.user.id;
+        const portfolio = await createPortfolioService(payload);
 
         return res.status(200).json({
             data: portfolio,
@@ -33,10 +33,9 @@ export const updatePortfolio = async (
     next: NextFunction
 ) => {
     try {
-        let portfolio = req.body;
-
-        portfolio["UserId"] = req.user.id;
-        portfolio = await updatePortfolioService(portfolio, parseInt(req.params.id), parseInt(portfolio["UserId"]));
+        const payload = req.body;
+        payload["UserId"] = req.user.id;
+        const portfolio = await updatePortfolioService(payload, parseInt(req.params.id), parseInt(payload["UserId"]));
 
         return res.status(200).json({
             data: portfolio,

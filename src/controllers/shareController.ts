@@ -11,9 +11,9 @@ export const createShare = async (
     next: NextFunction
 ) => {
     try {
-        let share = req.body;
+        const payload = req.body;
 
-        share = await createShareService(share);
+        const share = await createShareService(payload);
 
         return res.status(200).json({
             data: share,
@@ -31,9 +31,9 @@ export const updateShare = async (
     next: NextFunction
 ) => {
     try {
-        let share = req.body;
+        const payload = req.body;
 
-        share = await updateShareService(share, parseInt(req.params.id));
+        const share = await updateShareService(payload, parseInt(req.params.id));
 
         return res.status(200).json({
             data: share,
