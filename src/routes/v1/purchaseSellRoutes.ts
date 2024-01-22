@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { requireUser, validateRequest } from "../../middleware";
-import { purchaseSchema, sellSchema } from "../../validation/purchase_sell";
+import { purchaseSchema, sellSchema } from "../../validation/purchaseSell";
 import { purchase, sell } from "../../controllers/purchaseSellController";
 
 const purchaseSellRouter = Router();

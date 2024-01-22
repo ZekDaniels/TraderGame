@@ -6,6 +6,7 @@ import shareRouter from "./shareRoutes";
 import portfolioRouter from "./portfolioRoutes";
 import purchaseSellRouter from "./purchaseSellRoutes";
 import Share_Portfolio from "../../models/ShareOfPortfolio";
+import sharePortfolioRouter from "./sharePortfolioRoutes";
 
 const appRouter = Router();
 // all routes
@@ -30,8 +31,11 @@ const appRoutes = [
     path: "/trade",
     router: purchaseSellRouter,
   },
+  {
+    path: "/own_portfolios",
+    router: sharePortfolioRouter,
+  },
 ];
-console.log(Share_Portfolio);
 appRoutes.forEach(route => {
   appRouter.use(route.path, route.router);
 });

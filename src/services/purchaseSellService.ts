@@ -23,7 +23,6 @@ export const purchaseService = async (payload: any) => {
 
         const totalCost = quantity * share.lastPrice;
         const baseData = { PortfolioId: portfolio.id, ShareId: share.id };
-
         const purchaseSell = await sequelize.transaction(async transaction => {
             const purchaseSell = await PurchaseSell.create({
                 ...baseData,

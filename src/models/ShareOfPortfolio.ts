@@ -10,6 +10,8 @@ import { updateSharePrice } from "../events/shareEvents";
 class Share_Portfolio extends BaseModel {
     public quantity!: number;
     public price!: number;
+    public PortfolioId: number;
+    public ShareId: number;
 }
 
 Share_Portfolio.init(

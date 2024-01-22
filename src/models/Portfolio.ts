@@ -8,6 +8,7 @@ class Portfolio extends BaseModel {
     public name!: string;
     public status!: boolean;
     public isMain!: boolean;
+    public UserId: number;
 }
 
 Portfolio.init(
