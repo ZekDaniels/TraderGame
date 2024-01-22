@@ -7,6 +7,7 @@ export const LogType = {
   PURCHASE: 1,
   SELL: 2,
 };
+export const ONE_HOUR = 60 * 60 * 1000; /* ms */
 
 
 const SIGNED_URL_EXPIRY = 60 * 60; // in seconds

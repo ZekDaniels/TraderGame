@@ -1,6 +1,7 @@
 import Share_Portfolio from "../models/ShareOfPortfolio";
 import Portfolio from "../models/Portfolio";
 import Share from "../models/Share";
+import { ONE_HOUR } from "../config/consts";
 
 
 export const getSharePortfolioByIdService = async (id: number) => {
@@ -26,7 +27,10 @@ export const updateSharePortfolioPriceService = async (price: number, sharePortf
     }
 
     const shareToUpdate = await getSharePortfolioService({ where: { id: sharePortfolioId, } });
-    // log(shareToUpdate);
+    const one_hour_pass = Date.now() - (shareToUpdate.last_updated).getTime() > ONE_HOUR;
+    if(!one_hour_pass){
+        throw new Error("One hour not passed");
+    } 
     if (sharePortfolioId && isNaN(sharePortfolioId) || !shareToUpdate) {
         throw new Error("Invalid share of portfolio id");
     }
