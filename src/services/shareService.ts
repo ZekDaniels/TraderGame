@@ -5,6 +5,10 @@ export const createShareService = async (payload: any) => {
     return share;
 };
 
+export const getShareService = async (where: any) => {
+    return await Share.findOne({ where });
+};
+
 export const getShareByIdService = async (id: number) => {
     return await Share.findByPk(id);
 };

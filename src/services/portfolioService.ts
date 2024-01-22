@@ -9,10 +9,7 @@ export const createPortfolioService = async (payload: any) => {
 
 export const getPortfolioService = async (where: any) => {
 
-    const portfolio = await Portfolio.findOne({
-        where
-    });
-    return portfolio;
+    return await Portfolio.findOne({ where });
 };
 
 export const getPortfolioByIdService = async (id: number) => {
@@ -33,7 +30,7 @@ export const updatePortfolioService = async (portfolio: any, portfolioId: number
         where[Op.and].push({ id: portfolioId, UserId: userId });
     }
     const portfolioExists = await getPortfolioService(where);
-    
+
 
     if (!portfolio && !portfolioId) {
         throw new Error("Please provide portfolio data and/or portfolio id to update");
