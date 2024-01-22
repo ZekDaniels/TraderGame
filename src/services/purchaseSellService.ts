@@ -19,7 +19,7 @@ export const purchaseService = async (payload: any) => {
 
         const totalCost = quantity * share.lastPrice;
         const base_data = { PortfolioId: portfolioId, ShareId: share.id };
-        const purchase_sell = await PurchaseSell.create({ ...base_data, quantity: quantity, price: share.lastPrice, type: LogType.BUY });
+        const purchase_sell = await PurchaseSell.create({ ...base_data, quantity: quantity, price: share.lastPrice, type: LogType.PURCHASE });
 
         return { ...purchase_sell, totalCost: totalCost };
     }
@@ -38,7 +38,6 @@ export const sellService = async (payload: any) => {
         throw new Error("Invalid share symbol");
     }
     if (portfolio && share) {
-
         const totalCost = quantity * share.lastPrice;
         const base_data = { PortfolioId: portfolioId, ShareId: share.id };
         const purchase_sell = await PurchaseSell.create({ ...base_data, quantity: quantity, price: share.lastPrice, type: LogType.SELL });

@@ -4,7 +4,7 @@ export const ROLE = {
 };
 
 export const LogType = {
-  BUY: 1,
+  PURCHASE: 1,
   SELL: 2,
 };
 

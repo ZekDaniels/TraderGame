@@ -6,7 +6,7 @@ export async function manageSharePortfolio(purchase_sell: any, options: any) {
     const base_data = { PortfolioId: purchase_sell.PortfolioId, ShareId: purchase_sell.ShareId };
     let boughtShare = await Share_Portfolio.findOne({ where: base_data, transaction: options.transaction });
 
-    if (purchase_sell.type == LogType.BUY) {
+    if (purchase_sell.type == LogType.PURCHASE) {
         if (!boughtShare?.id) {
             boughtShare = await Share_Portfolio.create({
                 ...base_data,
