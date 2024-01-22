@@ -50,6 +50,16 @@ PurchaseSell.init(
         tableName: "purchase_sell",
         createdAt: "created_at",
         updatedAt: "last_updated",
+        indexes: [
+            {
+                unique: false,
+                fields: ["ShareId"],
+            },
+            {
+                unique: false,
+                fields: ["PortfolioId"],
+            }
+        ]
     }
 );
 

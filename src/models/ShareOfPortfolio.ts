@@ -42,6 +42,16 @@ Share_Portfolio.init(
         tableName: "shares_of_portfolios",
         createdAt: "created_at",
         updatedAt: "last_updated",
+        indexes: [
+            {
+                unique: false,
+                fields: ["ShareId"],
+            },
+            {
+                unique: false,
+                fields: ["PortfolioId"],
+            }
+        ]
     }
 );
 
