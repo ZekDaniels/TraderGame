@@ -1,37 +1,40 @@
+import { log } from "console";
 import { LogType } from "../config/consts";
 import Share_Portfolio from "../models/ShareOfPortfolio";
 
-export async function manageSharePortfolio(purchase_sell: any, options: any) {
+export async function manageSharePortfolio(purchaseSell: any, options: any) {
 
-    const base_data = { PortfolioId: purchase_sell.PortfolioId, ShareId: purchase_sell.ShareId };
-    let boughtShare = await Share_Portfolio.findOne({ where: base_data, transaction: options.transaction });
+    const baseData = { PortfolioId: purchaseSell.PortfolioId, ShareId: purchaseSell.ShareId };
+    let boughtShare = await Share_Portfolio.findOne({ where: baseData, transaction: options.transaction });
 
-    if (purchase_sell.type == LogType.PURCHASE) {
-    
-        if (!boughtShare?.id) {
+    if (purchaseSell.type == LogType.PURCHASE) {
+
+
+        if (!boughtShare?.id) {//Not Exists Purchase
 
             boughtShare = await Share_Portfolio.create({
-                ...base_data,
-                quantity: purchase_sell.quantity,
-                price: purchase_sell.price
+                ...baseData,
+                quantity: purchaseSell.quantity,
+                price: purchaseSell.price
             }, {
                 transaction: options.transaction
             });
-          
+
         }
-        else {
-            boughtShare.quantity += purchase_sell.quantity;
-            boughtShare.price = purchase_sell.lastPrice;
+        else {//Exists Purchase
+            boughtShare.quantity += purchaseSell.quantity;
+            boughtShare.price = purchaseSell.price;
             await boughtShare.save({ transaction: options.transaction });
         }
     }
-    else {
-        boughtShare.quantity -= purchase_sell.quantity;
+    else {//Sell
+
+        boughtShare.quantity -= purchaseSell.quantity;
 
         // If run out of stock
         if (boughtShare.quantity == 0) await boughtShare.destroy();
-        else {
-            boughtShare.price = purchase_sell.lastPrice;
+        else {//if stock left
+            boughtShare.price = purchaseSell.price;
             await boughtShare.save({ transaction: options.transaction });
         }
 
