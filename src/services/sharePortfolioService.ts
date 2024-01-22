@@ -1,13 +1,21 @@
 import Share_Portfolio from "../models/ShareOfPortfolio";
 import Portfolio from "../models/Portfolio";
-import { log } from "console";
+import Share from "../models/Share";
 
 
 export const getSharePortfolioByIdService = async (id: number) => {
     return await Share_Portfolio.findByPk(id);
 };
 export const getSharePortfolioService = async (where: any) => {
-    return (await Share_Portfolio.findOne(where));
+    return await Share_Portfolio.findOne(where);
+};
+
+export const getSharePortfoliosByUserService = async (userId: number) => {
+    return await Share.findAll({
+        include: [
+            { model: Portfolio, as: "portfolios", where: { UserId: userId } }
+        ],
+    });
 };
 
 export const updateSharePortfolioPriceService = async (price: number, sharePortfolioId: number, userId: number) => {

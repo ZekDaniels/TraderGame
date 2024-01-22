@@ -2,7 +2,7 @@ import {
 } from "../services/portfolioService";
 import { NextFunction, Response } from "express";
 import { customRequest } from "customDefinition";
-import { getSharePortfolioByIdService, updateSharePortfolioPriceService } from "../services/sharePortfolioService";
+import { getSharePortfolioByIdService, getSharePortfoliosByUserService, updateSharePortfolioPriceService } from "../services/sharePortfolioService";
 import { ApiError } from "../util/ApiError";
 
 
@@ -13,6 +13,27 @@ export const getSharePortfolio = async (
 ) => {
     try {
         const sharePortfolio = await getSharePortfolioByIdService(parseInt(req.params.id));
+
+        if (!sharePortfolio) {
+            throw new ApiError(400, "Share of Portfolio not found");
+        }
+
+        return res.status(200).json({
+            data: sharePortfolio,
+            error: false,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+export const getSharePortfolioList = async (
+    req: customRequest,
+    res: Response,
+    next: NextFunction
+) => {
+    try {
+        const sharePortfolio = await getSharePortfoliosByUserService(parseInt(req.user.id));
 
         if (!sharePortfolio) {
             throw new ApiError(400, "Share of Portfolio not found");

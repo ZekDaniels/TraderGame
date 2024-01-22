@@ -33,10 +33,6 @@ Share_Portfolio.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        PortfolioId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        }
 
     },
     {
@@ -58,8 +54,8 @@ Share_Portfolio.init(
 );
 
 
-Portfolio.belongsToMany(Share, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
-Share.belongsToMany(Portfolio, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
+Portfolio.belongsToMany(Share, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE", as: "shares" });
+Share.belongsToMany(Portfolio, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE", as: "portfolios" });
 PurchaseSell.afterCreate(manageSharePortfolio);
 PurchaseSell.afterCreate(updateSharePrice);
 
