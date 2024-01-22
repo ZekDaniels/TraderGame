@@ -58,6 +58,10 @@ PurchaseSell.init(
             {
                 unique: false,
                 fields: ["PortfolioId"],
+            },
+            {
+                unique: false,
+                fields: ["type"],
             }
         ]
     }
