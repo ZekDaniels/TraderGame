@@ -5,6 +5,7 @@ import Share from "./Share";
 import Portfolio from "./Portfolio";
 import PurchaseSell from "./PurchaseSell";
 import { manageSharePortfolio } from "../events/sharePortfolioEvents";
+import { updateSharePrice } from "../events/shareEvents";
 
 class Share_Portfolio extends BaseModel {
     public quantity!: number;
@@ -48,4 +49,6 @@ Share_Portfolio.init(
 Portfolio.belongsToMany(Share, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
 Share.belongsToMany(Portfolio, { through: Share_Portfolio, onDelete: "CASCADE", onUpdate: "CASCADE" });
 PurchaseSell.afterCreate(manageSharePortfolio);
+PurchaseSell.afterCreate(updateSharePrice);
+
 export default Share_Portfolio;
