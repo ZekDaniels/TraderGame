@@ -126,7 +126,7 @@ dist\               # js files
 src\
  |--config\         # Environment variables and configuration related things
  |--controllers\    # Route controllers 
- |--events|
+ |--events|         # Model Sequelize hooks
  |--helpers\        # Helper function files
  |--middlewares\    # Custom express middlewares
  |--model\          # Sequelize models 
