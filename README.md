@@ -17,8 +17,8 @@ Traders” . The purpose of the application is to educate users on the terminolo
   - [For development](#for-development)
   - [Sample .ENV](#sample-env)
   - [Commands](#commands)
-  - [API Collection](#api-collection)
   - [Project Structure](#project-structure)
+  - [API Collection](#api-collection)
   - [Inspirations](#inspirations)
 
 
