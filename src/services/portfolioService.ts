@@ -37,6 +37,11 @@ export const updatePortfolioService = async (portfolio: any, portfolioId: number
     if (portfolioId && isNaN(portfolioId) || !portfolioExists) {
         throw new Error("Invalid portfolio id");
     }
+
+    if(!portfolio.status && portfolio.isMain){
+        throw new Error("Main portfolio must be active");
+    }
+
     if (portfolio.id || portfolioId) {
         const id = portfolio.id || portfolioId;
 
