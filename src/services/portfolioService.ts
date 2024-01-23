@@ -16,7 +16,7 @@ export const getPortfolioByIdService = async (id: number) => {
 };
 
 export const getPortfoliosService = async () => {
-    return await Portfolio.findAll();
+    return await Portfolio.findAndCountAll();
 };
 
 export const updatePortfolioService = async (portfolio: any, portfolioId: number, userId: number) => {

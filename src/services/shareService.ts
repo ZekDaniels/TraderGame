@@ -14,7 +14,7 @@ export const getShareByIdService = async (id: number) => {
 };
 
 export const getSharesService = async () => {
-    return await Share.findAll();
+    return await Share.findAndCountAll();
 };
 
 export const updateShareService = async (share: any, shareId: number) => {
