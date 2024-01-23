@@ -166,7 +166,7 @@ src\
 for more details please refer [Sequelize](https://sequelize.org/docs/v6/getting-started/)
 
 ## API Collection
-To view the list of available APIs, import `Trader.postman_collection.json` and `ENV.postman_environment.json`.
+To view the list of available APIs, import on your Postman `Trader.postman_collection.json` and `ENV.postman_environment.json`, set env current on your Postman workspace.
 
 
 ## Inspirations
