@@ -22,7 +22,6 @@ export async function manageSharePortfolio(purchaseSell: any, options: any) {
         }
         else {//Exists Purchase
             boughtShare.quantity += purchaseSell.quantity;
-            boughtShare.price = purchaseSell.price;
             await boughtShare.save({ transaction: options.transaction });
         }
     }
@@ -33,7 +32,6 @@ export async function manageSharePortfolio(purchaseSell: any, options: any) {
         // If run out of stock
         if (boughtShare.quantity == 0) await boughtShare.destroy();
         else {//if stock left
-            boughtShare.price = purchaseSell.price;
             await boughtShare.save({ transaction: options.transaction });
         }
 

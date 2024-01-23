@@ -7,7 +7,6 @@ import sequelize from "../db/connection";
 import Share from "../models/Share";
 import Portfolio from "../models/Portfolio";
 
-
 export const getPurchaseSellLogsService = async (userId: number, key:any = 0) => {
     const userWhere = { UserId: userId };
     let logTypeWhere = {};
@@ -62,7 +61,6 @@ export const purchaseService = async (payload: any) => {
 
 export const sellService = async (payload: any) => {
     const { symbol, portfolioId, quantity, userId } = payload;
-
     const share = await getShareService({ where: { symbol: symbol } });
     const portfolio = await getPortfolioService({ where: { id: portfolioId, UserId: userId } });
 
@@ -75,6 +73,10 @@ export const sellService = async (payload: any) => {
 
     //Quantity Check
     const sellingShare = await getSharePortfolioService({ where: { PortfolioId: portfolio.id, ShareId: share.id } });
+    if (!sellingShare) {
+        throw new Error("Share doesn't exists in your portfolio");
+    }
+
     if (sellingShare.quantity < quantity) {
         throw new Error("Quantity is not enough to sell");
     }
