@@ -17,6 +17,7 @@ Traders” . The purpose of the application is to educate users on the terminolo
   - [For development](#for-development)
   - [Sample .ENV](#sample-env)
   - [Commands](#commands)
+  - [API Collection](#api-collection)
   - [Project Structure](#project-structure)
   - [Inspirations](#inspirations)
 
@@ -163,6 +164,10 @@ src\
  npm install --save oracledb # for Oracle 
 ```
 for more details please refer [Sequelize](https://sequelize.org/docs/v6/getting-started/)
+
+## API Collection
+To view the list of available APIs, import `Trader.postman_collection.json` and `ENV.postman_environment.json`.
+
 
 ## Inspirations
 - [Typescript-Node-Sequelize-Boilerplate](https://github.com/nabadeep25/typescript-node-sequelize-boilerplate.git)

@@ -1,0 +1,1028 @@
+{
+	"info": {
+		"_postman_id": "23f1b3c2-5365-497b-b98d-c5b03d95f4bc",
+		"name": "Trader",
+		"description": "API for managing shares",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10959320",
+		"_collection_link": "https://web.postman.co/workspace/New-Team-Workspace~f7af0830-3c42-4b75-8983-549f16d62b23/collection/10959320-23f1b3c2-5365-497b-b98d-c5b03d95f4bc?action=share&source=collection_link&creator=10959320"
+	},
+	"item": [
+		{
+			"name": "Share",
+			"item": [
+				{
+					"name": "Get share information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/share/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"share",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Logged in shares can fetch only their own share information."
+					},
+					"response": []
+				},
+				{
+					"name": "Get shares list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/share",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"share"
+							]
+						},
+						"description": "Logged in shares can fetch only their own share information."
+					},
+					"response": []
+				},
+				{
+					"name": "Update share",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"fake name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/share/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"share",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Logged in shares can only update their own information."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete share",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/share/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"share",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Logged in shares can only update their own information."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new Share",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Koyuncu Holding\",\n  \"symbol\": \"KYC\",\n  \"lastPrice\": 999.99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/share",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"share"
+							]
+						},
+						"description": "Create a new Share"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Portfolio",
+			"item": [
+				{
+					"name": "Get portfolio information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/portfolio/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"portfolio",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Logged in shares can fetch only their own share information."
+					},
+					"response": []
+				},
+				{
+					"name": "Get portfolio list",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/portfolio",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"portfolio"
+							]
+						},
+						"description": "Logged in shares can fetch only their own share information."
+					},
+					"response": []
+				},
+				{
+					"name": "Update portfolio",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isMain\": true,\n  \"status\": true,\n  \"name\": \"My Portfolio\"\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/portfolio/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"portfolio",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Logged in shares can only update their own information."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete portfolio",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/portfolio/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"portfolio",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Logged in shares can only update their own information."
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new portfolio",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Second\",\n  \"status\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/portfolio",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"portfolio"
+							]
+						},
+						"description": "Create a new Share"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register as user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"access_token\",jsonData[\"accessToken\"]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"friend\",\n  \"email\": \"friend@example.com\",\n  \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/auth/register",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Register as user"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"access_token\", jsonData[\"access_token\"]);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"name@example.com\",\n  \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Login"
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"fake@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/auth/forgot-password",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"forgot-password"
+							]
+						},
+						"description": "Forgot password"
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"name@example.com\",\n  \"password\": \"password1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/auth/reset-password",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"auth",
+								"reset-password"
+							]
+						},
+						"description": "Reset password"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get user information",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/user",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"user"
+							]
+						},
+						"description": "Get user information"
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"fake name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/user",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"user"
+							]
+						},
+						"description": "Update user information"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trade",
+			"item": [
+				{
+					"name": "Logs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/trade/logs",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"trade",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Purchase",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"symbol\": \"SBC\",\r\n    \"portfolioId\": 1,\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/trade/purchase",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"trade",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sell",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"symbol\": \"SBC\",\r\n    \"portfolioId\": 1,\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/trade/sell",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"trade",
+								"sell"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Own Portfolio",
+			"item": [
+				{
+					"name": "Update share price",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 710.55\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/own_portfolios/:id/update_price",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"own_portfolios",
+								":id",
+								"update_price"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						},
+						"description": "Logged in shares can only update their own information."
+					},
+					"response": []
+				},
+				{
+					"name": "Get share information",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/own_portfolios/:id",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"own_portfolios",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get shares list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{YOUR_API_HOST}}/{{version}}/own_portfolios/",
+							"protocol": "http",
+							"host": [
+								"{{YOUR_API_HOST}}"
+							],
+							"path": [
+								"{{version}}",
+								"own_portfolios",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get server status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{YOUR_API_HOST}}/",
+					"protocol": "http",
+					"host": [
+						"{{YOUR_API_HOST}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Get server status"
+			},
+			"response": []
+		},
+		{
+			"name": "Sync database",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://YOUR_API_HOST/sync",
+					"protocol": "http",
+					"host": [
+						"YOUR_API_HOST"
+					],
+					"path": [
+						"sync"
+					]
+				},
+				"description": "Sync database first time and after change in model."
+			},
+			"response": []
+		}
+	]
+}
