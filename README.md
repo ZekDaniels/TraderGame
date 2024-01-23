@@ -62,6 +62,9 @@ npm start
 ```sh
 npm install
 
+#load database
+psql.exe -h 127.0.0.1 -U postgres tradeapp < fakedata.sql
+
 npm run dev
 
 ```
