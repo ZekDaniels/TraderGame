@@ -12,7 +12,7 @@ export const getSharePortfolioService = async (where: any) => {
 };
 
 export const getSharePortfoliosByUserService = async (userId: number) => {
-    return await Share.findAll({
+    return await Share.findAndCountAll({
         include: [
             { model: Portfolio, as: "portfolios", where: { UserId: userId } }
         ],

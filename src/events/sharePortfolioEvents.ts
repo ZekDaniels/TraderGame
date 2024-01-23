@@ -1,4 +1,3 @@
-import { log } from "console";
 import { LogType } from "../config/consts";
 import Share_Portfolio from "../models/ShareOfPortfolio";
 
@@ -7,7 +6,7 @@ export async function manageSharePortfolio(purchaseSell: any, options: any) {
     const baseData = { PortfolioId: purchaseSell.PortfolioId, ShareId: purchaseSell.ShareId };
     let boughtShare = await Share_Portfolio.findOne({ where: baseData, transaction: options.transaction });
 
-    if (purchaseSell.type == LogType.PURCHASE) {
+    if (purchaseSell.logType == LogType.PURCHASE) {
 
 
         if (!boughtShare?.id) {//Not Exists Purchase

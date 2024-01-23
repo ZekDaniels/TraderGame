@@ -1,10 +1,30 @@
-import { log } from "console";
 import { LogType } from "../config/consts";
 import PurchaseSell from "../models/PurchaseSell";
 import { getPortfolioService } from "./portfolioService";
 import { getShareService } from "./shareService";
 import { getSharePortfolioService } from "./sharePortfolioService";
 import sequelize from "../db/connection";
+import Share from "../models/Share";
+import Portfolio from "../models/Portfolio";
+
+
+export const getPurchaseSellLogsService = async (userId: number, key:any = 0) => {
+    const userWhere = { UserId: userId };
+    let logTypeWhere = {};
+
+    if (key && key > 0) {
+        logTypeWhere = { logType: key };
+    }
+
+    const query = {
+        include: [
+            { model: Portfolio, where: userWhere },
+            { model: Share },
+        ],
+        where: logTypeWhere
+    };
+    return await PurchaseSell.findAndCountAll(query);
+};
 
 export const purchaseService = async (payload: any) => {
     const { symbol, portfolioId, quantity, userId } = payload;
@@ -28,7 +48,7 @@ export const purchaseService = async (payload: any) => {
                 ...baseData,
                 quantity: quantity,
                 price: share.lastPrice,
-                type: LogType.PURCHASE
+                logType: LogType.PURCHASE
             },
                 { transaction: transaction }
             );
@@ -67,7 +87,7 @@ export const sellService = async (payload: any) => {
                 ...baseData,
                 quantity: quantity,
                 price: sellingShare.price,
-                type: LogType.SELL
+                logType: LogType.SELL
             },
                 { transaction: transaction }
             );

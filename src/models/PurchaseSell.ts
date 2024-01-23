@@ -11,7 +11,7 @@ class PurchaseSell extends BaseModel {
     public name!: string;
     public quantity!: number;
     public price!: number;
-    public type!: number;
+    public logType!: number;
 }
 
 PurchaseSell.init(
@@ -29,7 +29,7 @@ PurchaseSell.init(
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        type: {
+        logType: {
             type: DataTypes.INTEGER,
             allowNull: false,
             validate: {
@@ -61,7 +61,7 @@ PurchaseSell.init(
             },
             {
                 unique: false,
-                fields: ["type"],
+                fields: ["logType"],
             }
         ]
     }
